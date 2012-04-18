@@ -1108,11 +1108,12 @@ let my_ctrlp_user_command = "" .
     \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*' | " .
     \ ctrlp_filter_greps
 
-let my_ctrlp_git_command = "" . 
-    \ "cd %s && git ls-files | " .
-    \ ctrlp_filter_greps
+" let my_ctrlp_git_command = "" . 
+"     \ "cd %s && git ls-files | " .
+"     \ ctrlp_filter_greps
 
-let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+" let g:ctrlp_user_command = ['.git/', my_ctrlp_git_command, my_ctrlp_user_command]
+let g:ctrlp_user_command = ['.git/', my_ctrlp_user_command]
 
 nnoremap <leader>. :CtrlPTag<cr>
 
