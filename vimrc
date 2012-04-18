@@ -5,7 +5,7 @@
 set nocompatible
 filetype off   " required! 
 " pathogen disabled
-call pathogen#infect('~/.vim/local/bundle/')
+" call pathogen#infect('~/.vim/local/bundle/')
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -111,7 +111,7 @@ Bundle 'gmarik/vundle'
     " Flexible viewer for any documentation source (help/man/perldoc/etc.)
     " for any file type inside Vim in easy to use, consistent,
     " smart and configurable way.
-    Bundle 'viewdoc'
+    " Bundle 'viewdoc'
 
 " }}}
 " File specific plugins {{{
