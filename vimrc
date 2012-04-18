@@ -1141,8 +1141,11 @@ vnoremap <leader>H :Gbrowse<cr>
 
 " }}}
 " Gist {{{
-" include private config for gist plugin
-runtime! ~/.vim/private/gist.vim
+let g:gist_cookie_dir = '~/.vim/private/gist/cookies'
+let g:gist_private = 1
+let g:gist_clip_command = 'pbcopy'
+let g:gist_detect_filetype = 1
+let g:gist_show_privates = 1
 " }}}
 " Gundo {{{
 
