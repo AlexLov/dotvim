@@ -1303,6 +1303,33 @@ let g:viewdoc_open = 'rightbelow vnew'
 " au VimEnter * let g:ViewDoc_DEFAULT = function('g:ViewDoc_help')
 
 " }}}
+" XPTemplate {{{
+" Set personal snippet folder location:
+let g:xptemplate_snippet_folders=['$HOME/.vim/local/xptemplate']
+" Turn off automatic closing of quotes and braces:
+let g:xptemplate_brace_complete = 0
+" Suppertab support
+" avoid key conflict
+let g:SuperTabMappingForward = '<Plug>supertabKey'
+" if nothing matched in xpt, try supertab
+let g:xptemplate_fallback = '<Plug>supertabKey'
+" xpt uses <Tab> as trigger key
+let g:xptemplate_key = '<Tab>'
+" Open the pop-up menu:
+let g:xptemplate_key_pum_only = '<Leader><Tab>'
+" Clear current placeholder and jump to the next:
+imap <C-d> <Tab>
+let g:xptemplate_nav_cancel = '<C-d>'
+" Move to the next placeholder in a snippet:
+let g:xptemplate_nav_next = '<Tab>'
+" Move cursor back to last placeholder:
+let g:xptemplate_goback = '<C-g>'
+" " use <tab>/<S-tab> to navigate through pum. Optional
+let g:xptemplate_pum_tab_nav = 1
+" " xpt triggers only when you typed whole name of a snippet. Optional
+" let g:xptemplate_minimal_prefix = 'full'
+let g:xptemplate_vars = "author=Alex Lov&email=alex@alexlov.com"
+" }}}
 " YankRing {{{
 
 nnoremap <D-y> :YRShow<CR>
