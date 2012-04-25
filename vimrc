@@ -6,7 +6,7 @@ set nocompatible
 filetype off   " required! 
 " pathogen disabled
 " call pathogen#infect('~/.vim/local/bundle/')
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/local/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
@@ -127,6 +127,8 @@ Bundle 'gmarik/vundle'
     Bundle 'groenewege/vim-less'
     " Add CSS3 syntax support to vim's built-in `syntax/css.vim`
     Bundle 'hail2u/vim-css3-syntax'
+    " Sort css property
+    Bundle 'miripiruni/CSScomb-for-Vim'
 " }}}
 " JavaScript {{{
     " Vastly improved vim's javascript indentation.
@@ -585,6 +587,11 @@ augroup ft_css
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
     " positioned inside of them AND the following code doesn't get unfolded.
     au BufNewFile,BufRead *.less,*.css,*.scss inoremap <buffer> {<cr> {}<left><cr><space><space><space><space>.<cr><esc>kA<bs>
+    "
+    " CSSComb
+    nnoremap <C-s> :CSSComb<cr>
+    " set intend
+    set sts=2 sw=2 ts=2
 augroup END
 
 " }}}
@@ -659,10 +666,10 @@ augroup ft_html
     au FileType html,jinja,htmldjango nnoremap <buffer> <s-cr> vit<esc>a<cr><esc>vito<esc>i<cr><esc>
 
     " Smarter pasting
-    au FileType html,jinja,htmldjango nnoremap <buffer> p :<C-U>YRPaste 'p'<CR>v`]=`]
-    au FileType html,jinja,htmldjango nnoremap <buffer> P :<C-U>YRPaste 'P'<CR>v`]=`]
-    au FileType html,jinja,htmldjango nnoremap <buffer> π :<C-U>YRPaste 'p'<CR>
-    au FileType html,jinja,htmldjango nnoremap <buffer> ∏ :<C-U>YRPaste 'P'<CR>
+    " au FileType html,jinja,htmldjango nnoremap <buffer> p :<C-U>YRPaste 'p'<CR>v`]=`]
+    " au FileType html,jinja,htmldjango nnoremap <buffer> P :<C-U>YRPaste 'P'<CR>v`]=`]
+    " au FileType html,jinja,htmldjango nnoremap <buffer> π :<C-U>YRPaste 'p'<CR>
+    " au FileType html,jinja,htmldjango nnoremap <buffer> ∏ :<C-U>YRPaste 'P'<CR>
 
     " Indent tag
     au FileType html,jinja,htmldjango nnoremap <buffer> <localleader>= Vat=
@@ -1335,8 +1342,8 @@ let g:xptemplate_vars = "author=Alex Lov&email=alex@alexlov.com"
 " nnoremap <D-y> :YRShow<CR>
 " function! YRRunAfterMaps()
 "     nnoremap Y :<C-U>YRYankCount 'Y'<CR>
-"     " omap <expr> L YRMapsExpression("", "$")
-"     " omap <expr> H YRMapsExpression("", "^")
+     " omap <expr> L YRMapsExpression("", "$")
+     " omap <expr> H YRMapsExpression("", "^")
 " endfunction
 
 
