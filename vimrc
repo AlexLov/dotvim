@@ -50,7 +50,7 @@ Bundle 'gmarik/vundle'
     " Text outlining and task management for Vim based on Emacs' Org-Mode 
     Bundle 'jceb/vim-orgmode'
     " Maintains a history of previous yanks, changes and deletes 
-    Bundle 'chrismetcalf/vim-yankring'
+    " Bundle 'chrismetcalf/vim-yankring'
 "
 " }}}
 " Development {{{
@@ -1332,12 +1332,12 @@ let g:xptemplate_vars = "author=Alex Lov&email=alex@alexlov.com"
 " }}}
 " YankRing {{{
 
-nnoremap <D-y> :YRShow<CR>
-function! YRRunAfterMaps()
-    nnoremap Y :<C-U>YRYankCount 'Y'<CR>
-    " omap <expr> L YRMapsExpression("", "$")
-    " omap <expr> H YRMapsExpression("", "^")
-endfunction
+" nnoremap <D-y> :YRShow<CR>
+" function! YRRunAfterMaps()
+"     nnoremap Y :<C-U>YRYankCount 'Y'<CR>
+"     " omap <expr> L YRMapsExpression("", "$")
+"     " omap <expr> H YRMapsExpression("", "^")
+" endfunction
 
 
 " }}}
