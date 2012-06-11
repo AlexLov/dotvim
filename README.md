@@ -12,13 +12,6 @@
 Поэтому нет нужды держать их в своём репозитарии на github.
 Команда `:BundleInstall[!]` собственно и устанавливает/обновляет все плагины.
 
-В качестве дополнительного менеджера плагинов используется
-[pathogen](https://github.com/tpope/vim-pathogen/).  Дополнительный нужен для
-того чтобы загружать плагины из другой (дополнительной) директории. Это нужно в
-случае плагинов, которые нельзя установить с использованием `git` (например
-`viewdoc`). Такие плагины лежат в отдельном каталоге, который загружается на
-[github](https://github.com).
-
 Общие
 -----
 
@@ -33,25 +26,24 @@
   повторения последнего действия на кнопке "."
 * [vim-commentary](https://github.com/tpope/vim-commentary) – простешее
   комментирование строки или выделенного куска по сочетанию `\\\` (тройное
-  нажатие кнопки `\`).
+  нажатие кнопки `\`) или `\\` (в режиме выделения).
 * [nerdtree](https://github.com/scrooloose/nerdtree) – файловый менеджер
-" abolish.vim: easily search for, substitute,
-" and abbreviate multiple variants of a word
 * [vim-abolish](https://github.com/tpope/vim-abolish) – поиск и замена подстрок
-  или абревиатур с множеством вариантов. Вообще не очень понимаю зачему он мне
-  может пригодиться, ещё не разу не использовал, но пока пусть будет.
+  или абревиатур с множеством вариантов. Вообще не очень понимаю зачем он мне
+  может пригодиться, ещё ни разу не использовал, но пока пусть будет.
 * [vim-speeddating](https://github.com/tpope/vim-speeddating) – изменять дату
-  кнопками C-x и C-a, инкрементальное увеличение/уменьшение даты как обычных
+  кнопками `C-x` и `C-a,` инкрементальное увеличение/уменьшение даты как обычных
   чисел, поддерживает различные форматы, имеет возможности для расширения своими
   форматами.
 * [Autoclose-vim](https://github.com/korpz/Autoclose-vim) – автозакрытие тегов,
   блоков типа if/end и подобное.
 * [vim-easymotion](https://github.com/Lokaltog/vim-easymotion) – быстрое
-  перемещение к нужному слову, символу или подобному, а так же удаление
-  копирование, замена и прочее. Работает по <leader><leader> (;;) + motion.
-  Пример: ;;w, затем выбираем на какое слово переместить курсор.
+  перемещение к нужному слову, символу или подобному, а так же удаление,
+  копирование, замена и прочее. Работает по `<leader><leader>` (;;) + motion.
+  Пример: `;;w`, затем выбираем на какое слово переместить курсор.
 * [gundo.vim](https://github.com/sjl/gundo.vim) – удобная работа с undo,
-  позволяет просмотреть какие именно были сделаны изменения и вернться к любому
+  позволяет просмотреть в отдельном окне какие именно были сделаны изменения и
+  вернться к любому
 * [supertab](https://github.com/ervandew/supertab) – автодополнения по Tabs
 * [scratch.vim](https://github.com/vim-scripts/scratch.vim) – использование
   scratch окна в vim, для временного хранения текста. После выхода из vim это
@@ -59,7 +51,6 @@
 * [vim-orgmode](https://github.com/jceb/vim-orgmode) – менеджер задач или
   todo-list. Основан на Emacs' Org-Mode. Пока особо не разобрался, но наверное
   полезная штука. Когда-нибудь разберусь и буду пользовать, наверное.
-" Maintains a history of previous yanks, changes and deletes 
 * [vim-yankring](https://github.com/chrismetcalf/vim-yankring) – управление
   буфером обмена, тобишь копипасты. Просмотр и редактирование всего что копировалось.
 
@@ -70,17 +61,14 @@ Development
 
 * [vim-fugitive](https://github.com/tpope/vim-fugitive) – отличный плагин для
   работы с git прямо из vim. Коммиты, диффы и прочие полезности с подстветкой
-  и прочими плюшками.
+  и другими плюшками.
 * [gist-vim](https://github.com/mattn/gist-vim) – закидывание текста, (скорее
   кусков кода) в gist.
 * [threesome.vim](https://github.com/sjl/threesome.vim) – мощный плагин для
   разрешения конфликтов при мердже бранчей или подобного
-" Source code browser with excellent support for Javascript
 * taglist-plus — просмот функций, классов и объектов, с поддержкой Javascript
 * [tagbar](https://github.com/majutsushi/tagbar) – ещё один плагин для просмотра
   функций, классов и объектов с удобной сортировкой и вообще.
-" MakeGreen runs make and shows a red or green message bar
-" for success/failure. Speeds the red-green-refactor cycle!
 * [vim-makegreen](https://github.com/sjl/vim-makegreen) – запускает make
   и отображает сообщения зелёным или красным цветом, пока не использую. Оставил
   на будущее
