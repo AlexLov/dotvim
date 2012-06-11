@@ -563,8 +563,6 @@ augroup ft_css
     au Filetype less,css,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
     au Filetype less,css,sass,scss setlocal iskeyword+=-
     au Filetype less,css,sass,scss setlocal sts=2 sw=2 ts=2
-    " set intend
-    " set sts=2 sw=2 ts=2
 
     " Use <localleader>S to sort properties.  Turns this:
     "
