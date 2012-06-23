@@ -1385,8 +1385,6 @@ endfunction
 " }}}
 " Environments (GUI/Console) ---------------------------------------------- {{{
 if has('gui_running')
-    set guifont=Menlo\ for\ Powerline:h12
-
     " Remove all the UI cruft
     set go-=T
     set go-=l
@@ -1404,6 +1402,7 @@ if has('gui_running')
     set guicursor+=a:blinkon0
 
     if has("gui_macvim")
+        set guifont=Menlo\ for\ Powerline:h12
         " Full screen means FULL screen
         set fuoptions=maxvert,maxhorz
 
