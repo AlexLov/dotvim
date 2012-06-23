@@ -27,6 +27,7 @@ popd > /dev/null
 VIM_DIR=$HOME/.vim
 VIMRC=$HOME/.vimrc
 
+## TODO: if old .vimrc and .vim is symlink to dotvim/..., don't do anything
 ## if file ~/.vimrc exist then create backup
 [[ -e $VIMRC ]] && mv $VIMRC ${VIMRC}.old
 ## create symlink
