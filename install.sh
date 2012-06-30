@@ -5,7 +5,8 @@
 # 
 #         USAGE: ./install.sh 
 # 
-#   DESCRIPTION: Simple script for create links .vimrc and .vim/ and some folders
+#   DESCRIPTION: Simple script for create links .vimrc, .vim/, some folders
+#                and update bundle
 # 
 #       OPTIONS: ---
 #  REQUIREMENTS: ---
@@ -22,7 +23,6 @@ set -o nounset                              # Treat unset variables as an error
 ## get fullpath to script itself
 pushd `dirname $0` > /dev/null
 DOTVIM_DIR=`pwd -P`
-popd > /dev/null
 
 VIM_DIR=$HOME/.vim
 VIMRC=$HOME/.vimrc
@@ -41,4 +41,11 @@ ln -s $DOTVIM_DIR/vim $VIM_DIR
 [[ -d ${VIM_DIR}/tmp ]]     || mkdir -p ${VIM_DIR}/tmp/{backup,ctrlp,swap,undo}
 [[ -d ${VIM_DIR}/private ]] || mkdir -p ${VIM_DIR}/private/gist/cookies
 
+## get vundle by git submodule
+git submodule init && git submodule update
 
+## update all bundles in vim by vundle
+vim +BundleInstall +qall
+
+## go to back
+popd > /dev/null
