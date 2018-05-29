@@ -11,7 +11,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " }}}
 
