@@ -51,6 +51,8 @@ Bundle 'gmarik/vundle'
     Bundle 'jceb/vim-orgmode'
     " Maintains a history of previous yanks, changes and deletes 
     " Bundle 'chrismetcalf/vim-yankring'
+    " Maximizer lets you maximize split windows and restore them automatically
+    Bundle 'szw/vim-maximizer'
 "
 " }}}
 " Development {{{
@@ -66,9 +68,13 @@ Bundle 'gmarik/vundle'
     Bundle 'majutsushi/tagbar'
     " MakeGreen runs make and shows a red or green message bar
     " for success/failure. Speeds the red-green-refactor cycle!
-    " Bundle 'sjl/vim-makegreen'
+    Bundle 'sjl/vim-makegreen'
     " Syntax checking hacks for vim
     Bundle 'scrooloose/syntastic'
+    " compiler for unittest by nose for python
+    Bundle 'lambdalisue/nose.vim'
+    " SML language mostly for course 'Programming languages'
+    Bundle 'chilicuil/vim-sml-coursera'
 
 " }}}
 " For Mac OS X only {{{
@@ -130,6 +136,9 @@ Bundle 'gmarik/vundle'
     " Sort css property
     Bundle 'miripiruni/CSScomb-for-Vim'
 " }}}
+" Go {{{
+    Bundle 'fatih/vim-go'
+" }}}
 " JavaScript {{{
     " Vastly improved vim's javascript indentation.
     Bundle 'pangloss/vim-javascript'
@@ -149,6 +158,9 @@ Bundle 'gmarik/vundle'
 " Text {{{
     Bundle 'tpope/vim-markdown'
 " }}}
+" Puppet {{{
+    Bundle 'rodjek/vim-puppet'
+" }}}
 "
 " }}}
 " Visualize {{{
@@ -156,7 +168,7 @@ Bundle 'gmarik/vundle'
     Bundle 'altercation/vim-colors-solarized'
     Bundle 'molokai'
 " statusline
-    Bundle 'Lokaltog/vim-powerline'
+"   Bundle 'Lokaltog/vim-powerline'
 "   Bundle 'scrooloose/vim-statline'
 " }}}
 
@@ -291,7 +303,7 @@ let maplocalleader = ","
 syntax on
 set background=dark
 " colorscheme molokai
-colorscheme solarized
+colorscheme molokai
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -776,6 +788,7 @@ augroup ft_puppet
 
     au Filetype puppet setlocal foldmethod=marker
     au Filetype puppet setlocal foldmarker={,}
+    au Filetype puppet setlocal ts=2 sts=2 sw=2
 augroup END
 
 " }}}
@@ -786,7 +799,7 @@ augroup ft_python
 
     " au FileType python setlocal omnifunc=pythoncomplete#Complete
     au FileType python setlocal define=^\s*\\(def\\\\|class\\)
-    " au FileType python compiler nose
+    au FileType python compiler nose
     " au FileType man nnoremap <buffer> <cr> :q<cr>
 
     " Jesus tapdancing Christ, built-in Python syntax, you couldn't let me
@@ -855,6 +868,15 @@ augroup ft_vim
 augroup END
 
 " }}}
+" YAML {{{
+
+augroup ft_yaml
+    au!
+
+    au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
+
+" }}}
 
 
 " }}}
@@ -889,6 +911,36 @@ endfunction " }}}
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
 nnoremap <leader>! :Shell 
 
+" }}}
+" Dim inactive windows using 'colorcolumn' setting ------------------------ {{{
+" This tends to slow down redrawing, but is very useful.
+" Based on https://groups.google.com/d/msg/vim_use/IJU-Vk-QLJE/xz4hjPjCRBUJ
+" XXX: this will only work with lines containing text (i.e. not '~')
+function! s:DimInactiveWindows() " {{{
+  for i in range(1, tabpagewinnr(tabpagenr(), '$'))
+    let l:range = ""
+    if i != winnr()
+      if &wrap
+        " HACK: when wrapping lines is enabled, we use the maximum number
+        " of columns getting highlighted. This might get calculated by
+        " looking for the longest visible line and using a multiple of
+        " winwidth().
+        let l:width=256 " max
+      else
+        let l:width=winwidth(i)
+      endif
+      let l:range = join(range(1, l:width), ',')
+    endif
+    call setwinvar(i, '&colorcolumn', l:range)
+  endfor
+endfunction " }}}
+augroup DimInactiveWindows
+  hi ColorColumn ctermbg=234 guibg=#293739
+  au!
+  au WinEnter * call s:DimInactiveWindows()
+  au WinEnter * set cursorline
+  au WinLeave * set nocursorline
+augroup END
 " }}}
 " Convenience mappings ---------------------------------------------------- {{{
 
@@ -1049,6 +1101,7 @@ inoremap <c-l> <c-x><c-l>
 inoremap <c-f> <c-x><c-f>
 
 " }}}
+"
 
 " }}}
 " CTags ------------------------------------------------------------------- {{{
@@ -1057,7 +1110,8 @@ inoremap <c-f> <c-x><c-f>
 " the tags file with sed and strip them out myself.
 "
 " Sigh.
-nnoremap <leader><cr> :silent !ctags -R . && sed -i .bak -E -e '/^[^	]+	[^	]+.py	.+v$/d' tags<cr>
+" nnoremap <leader><cr> :silent !ctags -R . && sed -i .bak -E -e '/^[^	]+	[^	]+.py	.+v$/d' tags<cr>
+nnoremap <leader><cr> :TagbarToggle<CR>
 
 " }}}
 " Plugins ----------------------------------------------------------------- {{{
@@ -1075,8 +1129,11 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 " Commentary {{{
 
 nmap <leader>c <Plug>CommentaryLine
+nmap <D-/> <Plug>CommentaryLine
 xmap <leader>c <Plug>Commentary
+xmap <D-/> <Plug>Commentary
 " au FileType htmldjango setlocal commentstring={#\ %s\ #}
+au FileType sml setlocal commentstring=(*\ %s\ *)
 
 " }}}
 " Ctrl-P {{{
@@ -1174,12 +1231,20 @@ let g:gundo_preview_statusline = "Gundo Preview"
 " Makegreen {{{
 
 " nnoremap \| :call MakeGreen('')<cr>
+" nnoremap <c-b> :call MakeGreen('')<cr>
+
+" }}}
+" Maximizer {{{
+
+nnoremap <silent><F6> :MaximizerToggle<CR> 
+vnoremap <silent><F6> :MaximizerToggle<CR>gv 
+inoremap <silent><F6> <C-o>:MaximizerToggle<CR>
 
 " }}}
 " NERD Tree {{{
 
-noremap  <d-i> :NERDTreeToggle<cr>
-inoremap <d-i> <esc>:NERDTreeToggle<cr>
+noremap  <m-i> :NERDTreeToggle<cr>
+inoremap <m-i> <esc>:NERDTreeToggle<cr>
 
 au Filetype nerdtree setlocal nolist
 
@@ -1204,7 +1269,12 @@ let g:org_debug = 0
 " }}}
 " Powerline {{{
 
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
+python import sys
+python sys.path.append('/Library/Python/2.7/site-packages/')
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
 
 " }}}
 " Python-Mode {{{
@@ -1402,7 +1472,9 @@ if has('gui_running')
     set guicursor+=a:blinkon0
 
     if has("gui_macvim")
-        set guifont=Menlo\ for\ Powerline:h12
+        "set guifont=Menlo\ for\ Powerline:h12
+        set guifont=Meslo\ LG\ S\ for\ Powerline:h12
+        "set guifont=Monaco\ for\ Powerline:h12
         " Full screen means FULL screen
         set fuoptions=maxvert,maxhorz
 
