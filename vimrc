@@ -11,76 +11,76 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " }}}
 
-" Bundles ----------------------------------------------------------------- {{{
+" Plugins ----------------------------------------------------------------- {{{
 
 " (Help) Manage bundles {{{
 " Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured bundles
+" :PluginInstall(!)    - install(update) bundles
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused bundles
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" NOTE: comments after Plugin command are not allowed..
 " }}}
 " General {{{
 " original repos on github
-    Bundle 'tpope/vim-surround'
-    Bundle 'tpope/vim-unimpaired'
-    Bundle 'tpope/vim-repeat'
-    Bundle 'tpope/vim-commentary'
-    Bundle 'scrooloose/nerdtree'
-    " Bundle 'scrooloose/nerdcommenter'
+    Plugin 'tpope/vim-surround'
+    Plugin 'tpope/vim-unimpaired'
+    Plugin 'tpope/vim-repeat'
+    Plugin 'tpope/vim-commentary'
+    Plugin 'scrooloose/nerdtree'
+    " Plugin 'scrooloose/nerdcommenter'
     " abolish.vim: easily search for, substitute,
     " and abbreviate multiple variants of a word
-    Bundle 'tpope/vim-abolish'
+    Plugin 'tpope/vim-abolish'
     " speeddating.vim: use CTRL-A/CTRL-X to increment dates, times, and more
-    Bundle 'tpope/vim-speeddating'
-    Bundle 'korpz/Autoclose-vim'
-    Bundle 'Lokaltog/vim-easymotion'
-    Bundle 'sjl/gundo.vim'
+    Plugin 'tpope/vim-speeddating'
+    Plugin 'korpz/Autoclose-vim'
+    Plugin 'Lokaltog/vim-easymotion'
+    Plugin 'sjl/gundo.vim'
     " Perform all your vim insert mode completions with Tab
-    Bundle 'ervandew/supertab'
+    Plugin 'ervandew/supertab'
     " Plugin to create and use a scratch Vim buffer 
-    Bundle 'vim-scripts/scratch.vim'
+    Plugin 'vim-scripts/scratch.vim'
     " Text outlining and task management for Vim based on Emacs' Org-Mode 
-    Bundle 'jceb/vim-orgmode'
+    Plugin 'jceb/vim-orgmode'
     " Maintains a history of previous yanks, changes and deletes 
-    " Bundle 'chrismetcalf/vim-yankring'
+    " Plugin 'chrismetcalf/vim-yankring'
     " Maximizer lets you maximize split windows and restore them automatically
-    Bundle 'szw/vim-maximizer'
+    Plugin 'szw/vim-maximizer'
 "
 " }}}
 " Development {{{
     " Git
-    Bundle 'tpope/vim-fugitive'
+    Plugin 'tpope/vim-fugitive'
     " Gist
-    Bundle 'mattn/gist-vim'
+    Plugin 'mattn/gist-vim'
     " A Vim plugin for resolving three-way merges.
-    Bundle 'sjl/threesome.vim'
+    Plugin 'sjl/threesome.vim'
     " Source code browser with excellent support for Javascript
-    Bundle 'taglist-plus'
+    Plugin 'taglist-plus'
     " Vim plugin that displays tags in a window, ordered by class etc.
-    Bundle 'majutsushi/tagbar'
+    Plugin 'majutsushi/tagbar'
     " MakeGreen runs make and shows a red or green message bar
     " for success/failure. Speeds the red-green-refactor cycle!
-    Bundle 'sjl/vim-makegreen'
+    Plugin 'sjl/vim-makegreen'
     " Syntax checking hacks for vim
-    Bundle 'scrooloose/syntastic'
+    Plugin 'scrooloose/syntastic'
     " compiler for unittest by nose for python
-    Bundle 'lambdalisue/nose.vim'
+    Plugin 'lambdalisue/nose.vim'
     " SML language mostly for course 'Programming languages'
-    Bundle 'chilicuil/vim-sml-coursera'
+    Plugin 'chilicuil/vim-sml-coursera'
 
 " }}}
 " For Mac OS X only {{{
     " Plugin for Vim, which provides smart keyboard layout switching.
     if has('mac') || has ('macunix')
-        Bundle 'porqz/KeyboardLayoutSwitcher'
+        Plugin 'porqz/KeyboardLayoutSwitcher'
     endif
 
 " }}}
@@ -97,19 +97,19 @@ Bundle 'gmarik/vundle'
 " Snippets {{{
     " Code snippets engine for Vim, with snippets library.
     " XPTemplate let you write codes in a smooth, quick and comfortable way.
-    Bundle 'drmingdrmer/xptemplate'
+    Plugin 'drmingdrmer/xptemplate'
     " snipMate.vim aims to be a concise vim script 
     " that implements some of TextMate's snippets features in Vim.
-    " Bundle 'msanders/snipmate.vim'
+    " Plugin 'msanders/snipmate.vim'
     " The ultimate snippet solution for python enabled Vim.
-    " Bundle 'UltiSnips'
+    " Plugin 'UltiSnips'
 
 " }}}
 " Searching {{{
-    Bundle 'mileszs/ack.vim'
-    " Bundle 'wincent/Command-T'
+    Plugin 'mileszs/ack.vim'
+    " Plugin 'wincent/Command-T'
     " Fuzzy file, buffer, mru and tag finder
-    Bundle 'kien/ctrlp.vim'
+    Plugin 'kien/ctrlp.vim'
 
 " }}}
 " Documentation {{{
@@ -117,63 +117,64 @@ Bundle 'gmarik/vundle'
     " Flexible viewer for any documentation source (help/man/perldoc/etc.)
     " for any file type inside Vim in easy to use, consistent,
     " smart and configurable way.
-    " Bundle 'viewdoc'
+    " Plugin 'viewdoc'
 
 " }}}
 " File specific plugins {{{
 " Coffee Script {{{
-    " Bundle 'kchmck/vim-coffee-script'
+    " Plugin 'kchmck/vim-coffee-script'
 " }}}
 " CSS {{{
     " Vim runtime files for Haml, Sass, and Scss
-    Bundle 'tpope/vim-haml'
+    Plugin 'tpope/vim-haml'
     " Highlight colors in css files
-    Bundle 'skammer/vim-css-color'
+    Plugin 'skammer/vim-css-color'
     " vim syntax for LESS (dynamic CSS)
-    Bundle 'groenewege/vim-less'
+    Plugin 'groenewege/vim-less'
     " Add CSS3 syntax support to vim's built-in `syntax/css.vim`
-    Bundle 'hail2u/vim-css3-syntax'
+    Plugin 'hail2u/vim-css3-syntax'
     " Sort css property
-    Bundle 'miripiruni/CSScomb-for-Vim'
+    Plugin 'miripiruni/CSScomb-for-Vim'
 " }}}
 " Go {{{
-    Bundle 'fatih/vim-go'
+    Plugin 'fatih/vim-go'
 " }}}
 " JavaScript {{{
     " Vastly improved vim's javascript indentation.
-    Bundle 'pangloss/vim-javascript'
+    Plugin 'pangloss/vim-javascript'
 " }}}
 " HTML {{{
-    Bundle 'othree/html5.vim'
+    Plugin 'othree/html5.vim'
     " like zen coding for vim
-    Bundle 'sjl/vim-sparkup'
+    Plugin 'sjl/vim-sparkup'
 " }}}
 " Python {{{
-    " Bundle 'sjl/python-mode'
+    " Plugin 'sjl/python-mode'
 " }}}
 " Shell {{{
     " Bash
-    Bundle 'vim-scripts/bash-support.vim'
+    Plugin 'vim-scripts/bash-support.vim'
 " }}}
 " Text {{{
-    Bundle 'tpope/vim-markdown'
+    Plugin 'tpope/vim-markdown'
 " }}}
 " Puppet {{{
-    Bundle 'rodjek/vim-puppet'
+    Plugin 'rodjek/vim-puppet'
 " }}}
 "
 " }}}
 " Visualize {{{
 " colorschemes
-    Bundle 'altercation/vim-colors-solarized'
-    Bundle 'molokai'
+    Plugin 'altercation/vim-colors-solarized'
+    Plugin 'molokai'
 " statusline
-"   Bundle 'Lokaltog/vim-powerline'
-"   Bundle 'scrooloose/vim-statline'
+"   Plugin 'Lokaltog/vim-powerline'
+"   Plugin 'scrooloose/vim-statline'
 " }}}
 
 " }}}
-filetype plugin indent on   " required! 
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " Basic options ----------------------------------------------------------- {{{
 set encoding=utf-8
@@ -1265,16 +1266,6 @@ let g:org_plugins = ['ShowHide', '|', 'Navigator', 'EditStructure', '|', 'Todo',
 let g:org_todo_keywords = ['TODO', '|', 'DONE']
 
 let g:org_debug = 0
-
-" }}}
-" Powerline {{{
-
-"let g:Powerline_symbols = 'fancy'
-python import sys
-python sys.path.append('/Library/Python/2.7/site-packages/')
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 " }}}
 " Python-Mode {{{

@@ -46,7 +46,7 @@ ln -s $DOTVIM_DIR/vim $VIM_DIR
 git submodule init && git submodule update
 
 ## update all bundles in vim by vundle
-vim +BundleInstall +qall
+vim +PluginInstall +qall
 
 ## go to back
 popd > /dev/null
