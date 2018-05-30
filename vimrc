@@ -3,14 +3,14 @@
 " Preamble ---------------------------------------------------------------- {{{
 
 set nocompatible
-filetype off   " required! 
+filetype off   " required!
 " pathogen disabled
 " call pathogen#infect('~/.vim/local/bundle/')
 set rtp+=~/.vim/local/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Plugin 'VundleVim/Vundle.vim'
 
 " }}}
@@ -45,11 +45,11 @@ Plugin 'VundleVim/Vundle.vim'
     Plugin 'sjl/gundo.vim'
     " Perform all your vim insert mode completions with Tab
     Plugin 'ervandew/supertab'
-    " Plugin to create and use a scratch Vim buffer 
+    " Plugin to create and use a scratch Vim buffer
     Plugin 'vim-scripts/scratch.vim'
-    " Text outlining and task management for Vim based on Emacs' Org-Mode 
+    " Text outlining and task management for Vim based on Emacs' Org-Mode
     Plugin 'jceb/vim-orgmode'
-    " Maintains a history of previous yanks, changes and deletes 
+    " Maintains a history of previous yanks, changes and deletes
     " Plugin 'chrismetcalf/vim-yankring'
     " Maximizer lets you maximize split windows and restore them automatically
     Plugin 'szw/vim-maximizer'
@@ -58,6 +58,8 @@ Plugin 'VundleVim/Vundle.vim'
 " Development {{{
     " Git
     Plugin 'tpope/vim-fugitive'
+    " VCS changes signs
+    Plugin 'mhinz/vim-signify'
     " Gist
     Plugin 'mattn/gist-vim'
     " A Vim plugin for resolving three-way merges.
@@ -98,7 +100,7 @@ Plugin 'VundleVim/Vundle.vim'
     " Code snippets engine for Vim, with snippets library.
     " XPTemplate let you write codes in a smooth, quick and comfortable way.
     Plugin 'drmingdrmer/xptemplate'
-    " snipMate.vim aims to be a concise vim script 
+    " snipMate.vim aims to be a concise vim script
     " that implements some of TextMate's snippets features in Vim.
     " Plugin 'msanders/snipmate.vim'
     " The ultimate snippet solution for python enabled Vim.
@@ -168,13 +170,14 @@ Plugin 'VundleVim/Vundle.vim'
     Plugin 'altercation/vim-colors-solarized'
     Plugin 'molokai'
 " statusline
-"   Plugin 'Lokaltog/vim-powerline'
 "   Plugin 'scrooloose/vim-statline'
+    Plugin 'vim-airline/vim-airline'
+    Plugin 'vim-airline/vim-airline-themes'
 " }}}
 
-" }}}
 call vundle#end()            " required
 filetype plugin indent on    " required
+" }}}
 
 " Basic options ----------------------------------------------------------- {{{
 set encoding=utf-8
@@ -910,7 +913,7 @@ function! s:ExecuteInShell(command) " {{{
     echo 'Shell command ' . command . ' executed.'
 endfunction " }}}
 command! -complete=shellcmd -nargs=+ Shell call s:ExecuteInShell(<q-args>)
-nnoremap <leader>! :Shell 
+nnoremap <leader>! :Shell
 
 " }}}
 " Dim inactive windows using 'colorcolumn' setting ------------------------ {{{
@@ -1119,7 +1122,7 @@ nnoremap <leader><cr> :TagbarToggle<CR>
 
 " Ack {{{
 
-map <leader>a :Ack! 
+map <leader>a :Ack!
 
 " }}}
 " Autoclose {{{
@@ -1165,14 +1168,14 @@ let ctrlp_filter_greps = "".
     \ "jar|class|swp|swo|log|so|o|pyc|jpe?g|png|gif|mo|po" .
     \ ")$' | " .
     \ "egrep -v '^(\\./)?(" .
-    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" . 
+    \ "deploy/|lib/|classes/|libs/|deploy/vendor/|.git/|.hg/|.svn/|.*migrations/" .
     \ ")'"
 
-let my_ctrlp_user_command = "" . 
+let my_ctrlp_user_command = "" .
     \ "find %s '(' -type f -or -type l ')' -maxdepth 15 -not -path '*/\\.*/*' | " .
     \ ctrlp_filter_greps
 
-" let my_ctrlp_git_command = "" . 
+" let my_ctrlp_git_command = "" .
 "     \ "cd %s && git ls-files | " .
 "     \ ctrlp_filter_greps
 
@@ -1200,7 +1203,7 @@ augroup ft_fugitive
 
     au BufNewFile,BufRead .git/index setlocal nolist
 augroup END
-" "Hub" 
+" "Hub"
 nnoremap <leader>H :Gbrowse<cr>
 vnoremap <leader>H :Gbrowse<cr>
 
@@ -1237,8 +1240,8 @@ let g:gundo_preview_statusline = "Gundo Preview"
 " }}}
 " Maximizer {{{
 
-nnoremap <silent><F6> :MaximizerToggle<CR> 
-vnoremap <silent><F6> :MaximizerToggle<CR>gv 
+nnoremap <silent><F6> :MaximizerToggle<CR>
+vnoremap <silent><F6> :MaximizerToggle<CR>gv
 inoremap <silent><F6> <C-o>:MaximizerToggle<CR>
 
 " }}}
@@ -1267,6 +1270,12 @@ let g:org_todo_keywords = ['TODO', '|', 'DONE']
 
 let g:org_debug = 0
 
+" }}}
+" Airline {{{
+let g:airline_powerline_fonts = 1
+let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#cursormode#enabled = 1
 " }}}
 " Python-Mode {{{
 
